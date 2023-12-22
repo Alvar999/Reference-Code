@@ -1,0 +1,2729 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet href="file:///C|/Users/Nhan/Desktop/Cong cu GTA/GM/VNGTA/pawno/xml/pawndoc.xsl" type="text/xsl"?>
+<doc source="C:\Users\Nhan\Desktop\Cong cu GTA\GM\VNGTA\filterscripts\vactions.pwn">
+	<assembly>
+		<name>vactions.pwn</name>
+	</assembly>
+	<members>
+
+		<!-- enumerations -->
+
+		<!-- constants -->
+		<member name="C:EOS" value="0">
+			<referrer name="strtok"/>
+			<referrer name="strrest"/>
+			<referrer name="token_by_delim"/>
+		</member>
+		<member name="C:cellmax" value="2147483647">
+			<referrer name="operator!(Float:)"/>
+		</member>
+		<member name="C:cellmin" value="-2147483648">
+			<referrer name="operator-(Float:)"/>
+		</member>
+		<member name="C:false" value="0">
+			<tagname value="bool"/>
+			<referrer name="isNumeric"/>
+		</member>
+		<member name="C:true" value="1">
+			<tagname value="bool"/>
+			<referrer name="isNumeric"/>
+		</member>
+
+		<!-- variables -->
+		<member name="F:gPlayerAnimLibsPreloaded">
+			<referrer name="OnPlayerSpawn"/>
+			<referrer name="OnPlayerConnect"/>
+		</member>
+		<member name="F:gPlayerUsingLoopingAnim">
+			<referrer name="PlayAnimEx"/>
+			<referrer name="StopLoopingAnim"/>
+			<referrer name="OnPlayerKeyStateChange"/>
+			<referrer name="OnPlayerDeath"/>
+			<referrer name="OnPlayerConnect"/>
+		</member>
+		<member name="F:txtAnimHelper">
+			<tagname value="Text"/>
+			<referrer name="PlayAnimEx"/>
+			<referrer name="OnPlayerKeyStateChange"/>
+			<referrer name="OnPlayerDeath"/>
+			<referrer name="zcmd_OnFilterScriptInit"/>
+		</member>
+		<member name="F:zcmd_g_HasOPCE">
+			<tagname value="bool"/>
+			<referrer name="OnFilterScriptInit"/>
+			<referrer name="OnPlayerCommandText"/>
+		</member>
+		<member name="F:zcmd_g_HasOPCS">
+			<tagname value="bool"/>
+			<referrer name="OnFilterScriptInit"/>
+			<referrer name="OnPlayerCommandText"/>
+		</member>
+
+		<!-- functions -->
+		<member name="M:operator!(Float:)" syntax="operator!(Float:)(oper)">
+			<tagname value="bool"/>
+			<stacksize value="1"/>
+			<dependency name="cellmax"/>
+			<param name="oper">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator%(_:,Float:)" syntax="operator%(_:,Float:)(oper1, oper2)">
+			<stacksize value="1"/>
+			<param name="oper1">
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator%(Float:,_:)" syntax="operator%(Float:,_:)(oper1, oper2)">
+			<stacksize value="1"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator%(Float:,Float:)" syntax="operator%(Float:,Float:)(oper1, oper2)">
+			<stacksize value="1"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator!=(Float:,_:)" syntax="operator!=(Float:,_:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator!=(Float:,Float:)" syntax="operator!=(Float:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator-(_:,Float:)" syntax="operator-(_:,Float:)(oper1, oper2)">
+			<tagname value="Float"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatsub"/>
+			<param name="oper1">
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator-(Float:,_:)" syntax="operator-(Float:,_:)(oper1, oper2)">
+			<tagname value="Float"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatsub"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator+(Float:,_:)" syntax="operator+(Float:,_:)(oper1, oper2)">
+			<tagname value="Float"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatadd"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator/(_:,Float:)" syntax="operator/(_:,Float:)(oper1, oper2)">
+			<tagname value="Float"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatdiv"/>
+			<param name="oper1">
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator/(Float:,_:)" syntax="operator/(Float:,_:)(oper1, oper2)">
+			<tagname value="Float"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatdiv"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator*(Float:,_:)" syntax="operator*(Float:,_:)(oper1, oper2)">
+			<tagname value="Float"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatmul"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator++(Float:)" syntax="operator++(Float:)(oper)">
+			<tagname value="Float"/>
+			<stacksize value="1"/>
+			<dependency name="operator+(Float:,Float:)"/>
+			<param name="oper">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator-(Float:)" syntax="operator-(Float:)(oper)">
+			<tagname value="Float"/>
+			<stacksize value="1"/>
+			<dependency name="cellmin"/>
+			<param name="oper">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator--(Float:)" syntax="operator--(Float:)(oper)">
+			<tagname value="Float"/>
+			<stacksize value="1"/>
+			<dependency name="operator-(Float:,Float:)"/>
+			<param name="oper">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator-(Float:,Float:)" syntax="operator-(Float:,Float:)(oper1, oper2)">
+			<tagname value="Float"/>
+			<attribute name="native"/>
+			<referrer name="operator--(Float:)"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator+(Float:,Float:)" syntax="operator+(Float:,Float:)(oper1, oper2)">
+			<tagname value="Float"/>
+			<attribute name="native"/>
+			<referrer name="operator++(Float:)"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator==(Float:,Float:)" syntax="operator==(Float:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator==(Float:,_:)" syntax="operator==(Float:,_:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator&gt;(Float:,Float:)" syntax="operator&gt;(Float:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator&gt;(Float:,_:)" syntax="operator&gt;(Float:,_:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator&gt;(_:,Float:)" syntax="operator&gt;(_:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator&gt;=(Float:,Float:)" syntax="operator&gt;=(Float:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator&gt;=(Float:,_:)" syntax="operator&gt;=(Float:,_:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator&gt;=(_:,Float:)" syntax="operator&gt;=(_:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator&lt;(Float:,Float:)" syntax="operator&lt;(Float:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator&lt;(Float:,_:)" syntax="operator&lt;(Float:,_:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator&lt;(_:,Float:)" syntax="operator&lt;(_:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator&lt;=(Float:,Float:)" syntax="operator&lt;=(Float:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator&lt;=(Float:,_:)" syntax="operator&lt;=(Float:,_:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator&lt;=(_:,Float:)" syntax="operator&lt;=(_:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:@receivepacket" syntax="@receivepacket(packet[], size, source[])">
+			<attribute name="public"/>
+			<stacksize value="1"/>
+			<param name="packet">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="size">
+			</param>
+			<param name="source">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:@receivestring" syntax="@receivestring(message[], source[])">
+			<attribute name="public"/>
+			<stacksize value="1"/>
+			<param name="message">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="source">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:AddStaticVehicleEx" syntax="AddStaticVehicleEx(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2, respawn_delay)">
+			<attribute name="native"/>
+			<referrer name="LoadStaticVehiclesFromFile"/>
+			<param name="modelid">
+			</param>
+			<param name="spawn_x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="spawn_y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="spawn_z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z_angle">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="color1">
+			</param>
+			<param name="color2">
+			</param>
+			<param name="respawn_delay">
+			</param>
+		</member>
+		<member name="M:ApplyAnimation" syntax="ApplyAnimation(playerid, animlib[], animname[], fDelta, loop, lockx, locky, freeze, time, forcesync)">
+			<attribute name="native"/>
+			<referrer name="PlayAnim"/>
+			<referrer name="PlayAnimEx"/>
+			<referrer name="StopLoopingAnim"/>
+			<referrer name="PreloadAnimLib"/>
+			<referrer name="cmd_bodypush"/>
+			<referrer name="cmd_lowbodypush"/>
+			<referrer name="cmd_headbutt"/>
+			<referrer name="cmd_airkick"/>
+			<referrer name="cmd_doorkick"/>
+			<referrer name="cmd_leftslap"/>
+			<referrer name="cmd_elbow"/>
+			<referrer name="cmd_coprun"/>
+			<param name="playerid">
+			</param>
+			<param name="animlib">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="animname">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="fDelta">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="loop">
+			</param>
+			<param name="lockx">
+			</param>
+			<param name="locky">
+			</param>
+			<param name="freeze">
+			</param>
+			<param name="time">
+			</param>
+			<param name="forcesync">
+			</param>
+		</member>
+		<member name="M:CallLocalFunction" syntax="CallLocalFunction(function[], format[], ...)">
+			<attribute name="native"/>
+			<referrer name="OnFilterScriptInit"/>
+			<referrer name="OnPlayerCommandText"/>
+			<param name="function">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="format">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="...">
+				<paraminfo> {Float,_} </paraminfo>
+			</param>
+		</member>
+		<member name="M:GetPVarInt" syntax="GetPVarInt(playerid, varname[])">
+			<attribute name="native"/>
+			<referrer name="IsAblePedAnimation"/>
+			<referrer name="IsAbleVehicleAnimation"/>
+			<referrer name="OnPlayerKeyStateChange"/>
+			<param name="playerid">
+			</param>
+			<param name="varname">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:GetPVarType" syntax="GetPVarType(playerid, varname[])">
+			<attribute name="native"/>
+			<referrer name="IsAblePedAnimation"/>
+			<referrer name="IsAbleVehicleAnimation"/>
+			<param name="playerid">
+			</param>
+			<param name="varname">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:GetPlayerVehicleID" syntax="GetPlayerVehicleID(playerid)">
+			<attribute name="native"/>
+			<referrer name="cmd_lowrider"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:GetVehicleModel" syntax="GetVehicleModel(vehicleid)">
+			<attribute name="native"/>
+			<referrer name="IsCLowrider"/>
+			<param name="vehicleid">
+			</param>
+		</member>
+		<member name="M:IsAblePedAnimation" syntax="IsAblePedAnimation(playerid)">
+			<stacksize value="5"/>
+			<referrer name="cmd_bodypush"/>
+			<referrer name="cmd_lowbodypush"/>
+			<referrer name="cmd_headbutt"/>
+			<referrer name="cmd_airkick"/>
+			<referrer name="cmd_doorkick"/>
+			<referrer name="cmd_leftslap"/>
+			<referrer name="cmd_elbow"/>
+			<referrer name="cmd_coprun"/>
+			<referrer name="cmd_handsup"/>
+			<referrer name="cmd_piss"/>
+			<referrer name="cmd_sneak"/>
+			<referrer name="cmd_drunk"/>
+			<referrer name="cmd_bomb"/>
+			<referrer name="cmd_rob"/>
+			<referrer name="cmd_laugh"/>
+			<referrer name="cmd_lookout"/>
+			<referrer name="cmd_robman"/>
+			<referrer name="cmd_hide"/>
+			<referrer name="cmd_vomit"/>
+			<referrer name="cmd_eat"/>
+			<referrer name="cmd_slapass"/>
+			<referrer name="cmd_crack"/>
+			<referrer name="cmd_fucku"/>
+			<referrer name="cmd_taichi"/>
+			<referrer name="cmd_drinkwater"/>
+			<referrer name="cmd_checktime"/>
+			<referrer name="cmd_sleep"/>
+			<referrer name="cmd_blob"/>
+			<referrer name="cmd_opendoor"/>
+			<referrer name="cmd_wavedown"/>
+			<referrer name="cmd_cpr"/>
+			<referrer name="cmd_dive"/>
+			<referrer name="cmd_showoff"/>
+			<referrer name="cmd_goggles"/>
+			<referrer name="cmd_cry"/>
+			<referrer name="cmd_throw"/>
+			<referrer name="cmd_robbed"/>
+			<referrer name="cmd_hurt"/>
+			<referrer name="cmd_box"/>
+			<referrer name="cmd_washhands"/>
+			<referrer name="cmd_crabs"/>
+			<referrer name="cmd_salute"/>
+			<referrer name="cmd_jerkoff"/>
+			<referrer name="cmd_stop"/>
+			<referrer name="cmd_rap"/>
+			<referrer name="cmd_ngoighe"/>
+			<referrer name="cmd_chat"/>
+			<referrer name="cmd_gesture"/>
+			<referrer name="cmd_lay"/>
+			<referrer name="cmd_wave"/>
+			<referrer name="cmd_signal"/>
+			<referrer name="cmd_nobreath"/>
+			<referrer name="cmd_fallover"/>
+			<referrer name="cmd_pedmove"/>
+			<referrer name="cmd_getjiggy"/>
+			<referrer name="cmd_stripclub"/>
+			<referrer name="cmd_smoke"/>
+			<referrer name="cmd_dj"/>
+			<referrer name="cmd_reload"/>
+			<referrer name="cmd_tag"/>
+			<referrer name="cmd_deal"/>
+			<referrer name="cmd_crossarms"/>
+			<referrer name="cmd_cheer"/>
+			<referrer name="cmd_sit"/>
+			<referrer name="cmd_siteat"/>
+			<referrer name="cmd_bar"/>
+			<referrer name="cmd_dance"/>
+			<referrer name="cmd_spank"/>
+			<referrer name="cmd_sexy"/>
+			<referrer name="cmd_holdup"/>
+			<referrer name="cmd_copa"/>
+			<referrer name="cmd_misc"/>
+			<referrer name="cmd_snatch"/>
+			<referrer name="cmd_blowjob"/>
+			<referrer name="cmd_kiss"/>
+			<referrer name="cmd_idles"/>
+			<referrer name="cmd_sunbathe"/>
+			<dependency name="GetPVarInt"/>
+			<dependency name="GetPVarType"/>
+			<dependency name="IsPlayerInAnyVehicle"/>
+			<dependency name="SendClientMessage"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:IsAbleVehicleAnimation" syntax="IsAbleVehicleAnimation(playerid)">
+			<stacksize value="5"/>
+			<referrer name="cmd_lowrider"/>
+			<referrer name="cmd_carchat"/>
+			<dependency name="GetPVarInt"/>
+			<dependency name="GetPVarType"/>
+			<dependency name="IsPlayerInAnyVehicle"/>
+			<dependency name="SendClientMessage"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:IsCLowrider" syntax="IsCLowrider(carid)">
+			<stacksize value="7"/>
+			<referrer name="cmd_lowrider"/>
+			<dependency name="GetVehicleModel"/>
+			<param name="carid">
+			</param>
+		</member>
+		<member name="M:IsKeyJustDown" syntax="IsKeyJustDown(key, newkeys, oldkeys)">
+			<stacksize value="1"/>
+			<referrer name="OnPlayerKeyStateChange"/>
+			<param name="key">
+			</param>
+			<param name="newkeys">
+			</param>
+			<param name="oldkeys">
+			</param>
+		</member>
+		<member name="M:IsPlayerInAnyVehicle" syntax="IsPlayerInAnyVehicle(playerid)">
+			<attribute name="native"/>
+			<referrer name="IsAblePedAnimation"/>
+			<referrer name="IsAbleVehicleAnimation"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:LoadStaticVehiclesFromFile" syntax="LoadStaticVehiclesFromFile(filename[])">
+			<stacksize value="340"/>
+			<dependency name="AddStaticVehicleEx"/>
+			<dependency name="fclose"/>
+			<dependency name="floatstr"/>
+			<dependency name="fopen"/>
+			<dependency name="fread"/>
+			<dependency name="io_read"/>
+			<dependency name="printf"/>
+			<dependency name="strval"/>
+			<dependency name="token_by_delim"/>
+			<param name="filename">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnDialogResponse" syntax="OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="dialogid">
+			</param>
+			<param name="response">
+			</param>
+			<param name="listitem">
+			</param>
+			<param name="inputtext">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnEnterExitModShop" syntax="OnEnterExitModShop(playerid, enterexit, interiorid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="enterexit">
+			</param>
+			<param name="interiorid">
+			</param>
+		</member>
+		<member name="M:OnFilterScriptExit" syntax="OnFilterScriptExit()">
+			<stacksize value="1"/>
+		</member>
+		<member name="M:OnFilterScriptInit" syntax="OnFilterScriptInit()">
+			<attribute name="public"/>
+			<stacksize value="4"/>
+			<dependency name="CallLocalFunction"/>
+			<dependency name="funcidx"/>
+			<dependency name="zcmd_g_HasOPCE"/>
+			<dependency name="zcmd_g_HasOPCS"/>
+		</member>
+		<member name="M:OnGameModeExit" syntax="OnGameModeExit()">
+			<stacksize value="1"/>
+		</member>
+		<member name="M:OnGameModeInit" syntax="OnGameModeInit()">
+			<stacksize value="1"/>
+		</member>
+		<member name="M:OnObjectMoved" syntax="OnObjectMoved(objectid)">
+			<stacksize value="1"/>
+			<param name="objectid">
+			</param>
+		</member>
+		<member name="M:OnPlayerClickMap" syntax="OnPlayerClickMap(playerid, fX, fY, fZ)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="fX">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fY">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fZ">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerClickPlayer" syntax="OnPlayerClickPlayer(playerid, clickedplayerid, source)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="clickedplayerid">
+			</param>
+			<param name="source">
+			</param>
+		</member>
+		<member name="M:OnPlayerClickPlayerTextDraw" syntax="OnPlayerClickPlayerTextDraw(playerid, playertextid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="playertextid">
+				<paraminfo>PlayerText </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerClickTextDraw" syntax="OnPlayerClickTextDraw(playerid, clickedid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="clickedid">
+				<paraminfo>Text </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerCommandPerformed" syntax="OnPlayerCommandPerformed(playerid, cmdtext[], success)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="cmdtext">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="success">
+			</param>
+		</member>
+		<member name="M:OnPlayerCommandReceived" syntax="OnPlayerCommandReceived(playerid, cmdtext[])">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="cmdtext">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerCommandText" syntax="OnPlayerCommandText(playerid, cmdtext[])">
+			<attribute name="public"/>
+			<stacksize value="43"/>
+			<dependency name="CallLocalFunction"/>
+			<dependency name="format"/>
+			<dependency name="tolower"/>
+			<dependency name="zcmd_g_HasOPCE"/>
+			<dependency name="zcmd_g_HasOPCS"/>
+			<param name="playerid">
+			</param>
+			<param name="cmdtext">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerConnect" syntax="OnPlayerConnect(playerid)">
+			<attribute name="public"/>
+			<stacksize value="1"/>
+			<dependency name="gPlayerAnimLibsPreloaded"/>
+			<dependency name="gPlayerUsingLoopingAnim"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerDeath" syntax="OnPlayerDeath(playerid, killerid, reason)">
+			<attribute name="public"/>
+			<stacksize value="4"/>
+			<dependency name="TextDrawHideForPlayer"/>
+			<dependency name="gPlayerUsingLoopingAnim"/>
+			<dependency name="txtAnimHelper"/>
+			<param name="playerid">
+			</param>
+			<param name="killerid">
+			</param>
+			<param name="reason">
+			</param>
+		</member>
+		<member name="M:OnPlayerDisconnect" syntax="OnPlayerDisconnect(playerid, reason)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="reason">
+			</param>
+		</member>
+		<member name="M:OnPlayerEditAttachedObject" syntax="OnPlayerEditAttachedObject(playerid, response, index, modelid, boneid, fOffsetX, fOffsetY, fOffsetZ, fRotX, fRotY, fRotZ, fScaleX, fScaleY, fScaleZ)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="response">
+			</param>
+			<param name="index">
+			</param>
+			<param name="modelid">
+			</param>
+			<param name="boneid">
+			</param>
+			<param name="fOffsetX">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fOffsetY">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fOffsetZ">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fRotX">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fRotY">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fRotZ">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fScaleX">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fScaleY">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fScaleZ">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerEditObject" syntax="OnPlayerEditObject(playerid, playerobject, objectid, response, fX, fY, fZ, fRotX, fRotY, fRotZ)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="playerobject">
+			</param>
+			<param name="objectid">
+			</param>
+			<param name="response">
+			</param>
+			<param name="fX">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fY">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fZ">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fRotX">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fRotY">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fRotZ">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerEnterCheckpoint" syntax="OnPlayerEnterCheckpoint(playerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerEnterRaceCheckpoint" syntax="OnPlayerEnterRaceCheckpoint(playerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerEnterVehicle" syntax="OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="vehicleid">
+			</param>
+			<param name="ispassenger">
+			</param>
+		</member>
+		<member name="M:OnPlayerExitVehicle" syntax="OnPlayerExitVehicle(playerid, vehicleid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="vehicleid">
+			</param>
+		</member>
+		<member name="M:OnPlayerExitedMenu" syntax="OnPlayerExitedMenu(playerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerGiveDamage" syntax="OnPlayerGiveDamage(playerid, damagedid, amount, weaponid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="damagedid">
+			</param>
+			<param name="amount">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="weaponid">
+			</param>
+		</member>
+		<member name="M:OnPlayerInteriorChange" syntax="OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="newinteriorid">
+			</param>
+			<param name="oldinteriorid">
+			</param>
+		</member>
+		<member name="M:OnPlayerKeyStateChange" syntax="OnPlayerKeyStateChange(playerid, newkeys, oldkeys)">
+			<attribute name="public"/>
+			<stacksize value="6"/>
+			<dependency name="GetPVarInt"/>
+			<dependency name="IsKeyJustDown"/>
+			<dependency name="StopLoopingAnim"/>
+			<dependency name="TextDrawHideForPlayer"/>
+			<dependency name="gPlayerUsingLoopingAnim"/>
+			<dependency name="txtAnimHelper"/>
+			<param name="playerid">
+			</param>
+			<param name="newkeys">
+			</param>
+			<param name="oldkeys">
+			</param>
+		</member>
+		<member name="M:OnPlayerLeaveCheckpoint" syntax="OnPlayerLeaveCheckpoint(playerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerLeaveRaceCheckpoint" syntax="OnPlayerLeaveRaceCheckpoint(playerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerObjectMoved" syntax="OnPlayerObjectMoved(playerid, objectid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="objectid">
+			</param>
+		</member>
+		<member name="M:OnPlayerPickUpPickup" syntax="OnPlayerPickUpPickup(playerid, pickupid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="pickupid">
+			</param>
+		</member>
+		<member name="M:OnPlayerRequestClass" syntax="OnPlayerRequestClass(playerid, classid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="classid">
+			</param>
+		</member>
+		<member name="M:OnPlayerRequestSpawn" syntax="OnPlayerRequestSpawn(playerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerSelectObject" syntax="OnPlayerSelectObject(playerid, type, objectid, modelid, fX, fY, fZ)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="type">
+			</param>
+			<param name="objectid">
+			</param>
+			<param name="modelid">
+			</param>
+			<param name="fX">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fY">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fZ">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerSelectedMenuRow" syntax="OnPlayerSelectedMenuRow(playerid, row)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="row">
+			</param>
+		</member>
+		<member name="M:OnPlayerSpawn" syntax="OnPlayerSpawn(playerid)">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="PreloadAnimLib"/>
+			<dependency name="gPlayerAnimLibsPreloaded"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerStateChange" syntax="OnPlayerStateChange(playerid, newstate, oldstate)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="newstate">
+			</param>
+			<param name="oldstate">
+			</param>
+		</member>
+		<member name="M:OnPlayerStreamIn" syntax="OnPlayerStreamIn(playerid, forplayerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="forplayerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerStreamOut" syntax="OnPlayerStreamOut(playerid, forplayerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="forplayerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerTakeDamage" syntax="OnPlayerTakeDamage(playerid, issuerid, amount, weaponid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="issuerid">
+			</param>
+			<param name="amount">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="weaponid">
+			</param>
+		</member>
+		<member name="M:OnPlayerText" syntax="OnPlayerText(playerid, text[])">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="text">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerUpdate" syntax="OnPlayerUpdate(playerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnRconCommand" syntax="OnRconCommand(cmd[])">
+			<stacksize value="1"/>
+			<param name="cmd">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnRconLoginAttempt" syntax="OnRconLoginAttempt(ip[], password[], success)">
+			<stacksize value="1"/>
+			<param name="ip">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="password">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="success">
+			</param>
+		</member>
+		<member name="M:OnUnoccupiedVehicleUpdate" syntax="OnUnoccupiedVehicleUpdate(vehicleid, playerid, passenger_seat)">
+			<stacksize value="1"/>
+			<param name="vehicleid">
+			</param>
+			<param name="playerid">
+			</param>
+			<param name="passenger_seat">
+			</param>
+		</member>
+		<member name="M:OnVehicleDamageStatusUpdate" syntax="OnVehicleDamageStatusUpdate(vehicleid, playerid)">
+			<stacksize value="1"/>
+			<param name="vehicleid">
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnVehicleDeath" syntax="OnVehicleDeath(vehicleid, killerid)">
+			<stacksize value="1"/>
+			<param name="vehicleid">
+			</param>
+			<param name="killerid">
+			</param>
+		</member>
+		<member name="M:OnVehicleMod" syntax="OnVehicleMod(playerid, vehicleid, componentid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="vehicleid">
+			</param>
+			<param name="componentid">
+			</param>
+		</member>
+		<member name="M:OnVehiclePaintjob" syntax="OnVehiclePaintjob(playerid, vehicleid, paintjobid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="vehicleid">
+			</param>
+			<param name="paintjobid">
+			</param>
+		</member>
+		<member name="M:OnVehicleRespray" syntax="OnVehicleRespray(playerid, vehicleid, color1, color2)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="vehicleid">
+			</param>
+			<param name="color1">
+			</param>
+			<param name="color2">
+			</param>
+		</member>
+		<member name="M:OnVehicleSpawn" syntax="OnVehicleSpawn(vehicleid)">
+			<stacksize value="1"/>
+			<param name="vehicleid">
+			</param>
+		</member>
+		<member name="M:OnVehicleStreamIn" syntax="OnVehicleStreamIn(vehicleid, forplayerid)">
+			<stacksize value="1"/>
+			<param name="vehicleid">
+			</param>
+			<param name="forplayerid">
+			</param>
+		</member>
+		<member name="M:OnVehicleStreamOut" syntax="OnVehicleStreamOut(vehicleid, forplayerid)">
+			<stacksize value="1"/>
+			<param name="vehicleid">
+			</param>
+			<param name="forplayerid">
+			</param>
+		</member>
+		<member name="M:PlayAnim" syntax="PlayAnim(playerid, animlib[], animname[], fDelta, loop, lockx, locky, freeze, time, forcesync)">
+			<stacksize value="12"/>
+			<referrer name="cmd_bomb"/>
+			<referrer name="cmd_lookout"/>
+			<referrer name="cmd_slapass"/>
+			<referrer name="cmd_fucku"/>
+			<referrer name="cmd_checktime"/>
+			<referrer name="cmd_opendoor"/>
+			<referrer name="cmd_wavedown"/>
+			<referrer name="cmd_cpr"/>
+			<referrer name="cmd_goggles"/>
+			<referrer name="cmd_throw"/>
+			<referrer name="cmd_gesture"/>
+			<referrer name="cmd_smoke"/>
+			<referrer name="cmd_reload"/>
+			<referrer name="cmd_bar"/>
+			<referrer name="cmd_sexy"/>
+			<referrer name="cmd_copa"/>
+			<referrer name="cmd_misc"/>
+			<referrer name="cmd_snatch"/>
+			<referrer name="cmd_kiss"/>
+			<referrer name="cmd_lowrider"/>
+			<referrer name="cmd_carchat"/>
+			<dependency name="ApplyAnimation"/>
+			<param name="playerid">
+			</param>
+			<param name="animlib">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="animname">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="fDelta">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="loop">
+			</param>
+			<param name="lockx">
+			</param>
+			<param name="locky">
+			</param>
+			<param name="freeze">
+			</param>
+			<param name="time">
+			</param>
+			<param name="forcesync">
+			</param>
+		</member>
+		<member name="M:PlayAnimEx" syntax="PlayAnimEx(playerid, animlib[], animname[], fDelta, loop, lockx, locky, freeze, time, forcesync)">
+			<stacksize value="12"/>
+			<referrer name="cmd_sneak"/>
+			<referrer name="cmd_drunk"/>
+			<referrer name="cmd_rob"/>
+			<referrer name="cmd_laugh"/>
+			<referrer name="cmd_robman"/>
+			<referrer name="cmd_hide"/>
+			<referrer name="cmd_vomit"/>
+			<referrer name="cmd_eat"/>
+			<referrer name="cmd_crack"/>
+			<referrer name="cmd_taichi"/>
+			<referrer name="cmd_drinkwater"/>
+			<referrer name="cmd_sleep"/>
+			<referrer name="cmd_blob"/>
+			<referrer name="cmd_dive"/>
+			<referrer name="cmd_showoff"/>
+			<referrer name="cmd_cry"/>
+			<referrer name="cmd_robbed"/>
+			<referrer name="cmd_hurt"/>
+			<referrer name="cmd_box"/>
+			<referrer name="cmd_washhands"/>
+			<referrer name="cmd_crabs"/>
+			<referrer name="cmd_salute"/>
+			<referrer name="cmd_jerkoff"/>
+			<referrer name="cmd_stop"/>
+			<referrer name="cmd_rap"/>
+			<referrer name="cmd_ngoighe"/>
+			<referrer name="cmd_chat"/>
+			<referrer name="cmd_lay"/>
+			<referrer name="cmd_wave"/>
+			<referrer name="cmd_signal"/>
+			<referrer name="cmd_nobreath"/>
+			<referrer name="cmd_fallover"/>
+			<referrer name="cmd_pedmove"/>
+			<referrer name="cmd_getjiggy"/>
+			<referrer name="cmd_stripclub"/>
+			<referrer name="cmd_smoke"/>
+			<referrer name="cmd_dj"/>
+			<referrer name="cmd_tag"/>
+			<referrer name="cmd_deal"/>
+			<referrer name="cmd_crossarms"/>
+			<referrer name="cmd_cheer"/>
+			<referrer name="cmd_sit"/>
+			<referrer name="cmd_siteat"/>
+			<referrer name="cmd_bar"/>
+			<referrer name="cmd_spank"/>
+			<referrer name="cmd_sexy"/>
+			<referrer name="cmd_holdup"/>
+			<referrer name="cmd_copa"/>
+			<referrer name="cmd_misc"/>
+			<referrer name="cmd_blowjob"/>
+			<referrer name="cmd_idles"/>
+			<referrer name="cmd_sunbathe"/>
+			<dependency name="ApplyAnimation"/>
+			<dependency name="TextDrawShowForPlayer"/>
+			<dependency name="gPlayerUsingLoopingAnim"/>
+			<dependency name="txtAnimHelper"/>
+			<param name="playerid">
+			</param>
+			<param name="animlib">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="animname">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="fDelta">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="loop">
+			</param>
+			<param name="lockx">
+			</param>
+			<param name="locky">
+			</param>
+			<param name="freeze">
+			</param>
+			<param name="time">
+			</param>
+			<param name="forcesync">
+			</param>
+		</member>
+		<member name="M:PreloadAnimLib" syntax="PreloadAnimLib(playerid, animlib[])">
+			<stacksize value="12"/>
+			<referrer name="OnPlayerSpawn"/>
+			<dependency name="ApplyAnimation"/>
+			<param name="playerid">
+			</param>
+			<param name="animlib">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:SendClientMessage" syntax="SendClientMessage(playerid, color, message[])">
+			<attribute name="native"/>
+			<referrer name="IsAblePedAnimation"/>
+			<referrer name="IsAbleVehicleAnimation"/>
+			<referrer name="cmd_animlist"/>
+			<referrer name="cmd_rap"/>
+			<referrer name="cmd_ngoighe"/>
+			<referrer name="cmd_chat"/>
+			<referrer name="cmd_gesture"/>
+			<referrer name="cmd_lay"/>
+			<referrer name="cmd_wave"/>
+			<referrer name="cmd_signal"/>
+			<referrer name="cmd_nobreath"/>
+			<referrer name="cmd_fallover"/>
+			<referrer name="cmd_pedmove"/>
+			<referrer name="cmd_getjiggy"/>
+			<referrer name="cmd_stripclub"/>
+			<referrer name="cmd_smoke"/>
+			<referrer name="cmd_dj"/>
+			<referrer name="cmd_reload"/>
+			<referrer name="cmd_tag"/>
+			<referrer name="cmd_deal"/>
+			<referrer name="cmd_crossarms"/>
+			<referrer name="cmd_cheer"/>
+			<referrer name="cmd_sit"/>
+			<referrer name="cmd_siteat"/>
+			<referrer name="cmd_bar"/>
+			<referrer name="cmd_dance"/>
+			<referrer name="cmd_spank"/>
+			<referrer name="cmd_sexy"/>
+			<referrer name="cmd_holdup"/>
+			<referrer name="cmd_copa"/>
+			<referrer name="cmd_misc"/>
+			<referrer name="cmd_snatch"/>
+			<referrer name="cmd_blowjob"/>
+			<referrer name="cmd_kiss"/>
+			<referrer name="cmd_idles"/>
+			<referrer name="cmd_sunbathe"/>
+			<referrer name="cmd_lowrider"/>
+			<referrer name="cmd_carchat"/>
+			<param name="playerid">
+			</param>
+			<param name="color">
+			</param>
+			<param name="message">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:SendRconCommand" syntax="SendRconCommand(command[])">
+			<attribute name="native"/>
+			<referrer name="cmd_intzcmdprocessor"/>
+			<param name="command">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:SetPlayerSpecialAction" syntax="SetPlayerSpecialAction(playerid, actionid)">
+			<attribute name="native"/>
+			<referrer name="cmd_handsup"/>
+			<referrer name="cmd_piss"/>
+			<referrer name="cmd_dance"/>
+			<param name="playerid">
+			</param>
+			<param name="actionid">
+			</param>
+		</member>
+		<member name="M:StopLoopingAnim" syntax="StopLoopingAnim(playerid)">
+			<stacksize value="12"/>
+			<referrer name="OnPlayerKeyStateChange"/>
+			<dependency name="ApplyAnimation"/>
+			<dependency name="gPlayerUsingLoopingAnim"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:TextDrawAlignment" syntax="TextDrawAlignment(text, alignment)">
+			<attribute name="native"/>
+			<referrer name="zcmd_OnFilterScriptInit"/>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+			<param name="alignment">
+			</param>
+		</member>
+		<member name="M:TextDrawBackgroundColor" syntax="TextDrawBackgroundColor(text, color)">
+			<attribute name="native"/>
+			<referrer name="zcmd_OnFilterScriptInit"/>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+			<param name="color">
+			</param>
+		</member>
+		<member name="M:TextDrawColor" syntax="TextDrawColor(text, color)">
+			<attribute name="native"/>
+			<referrer name="zcmd_OnFilterScriptInit"/>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+			<param name="color">
+			</param>
+		</member>
+		<member name="M:TextDrawCreate" syntax="TextDrawCreate(x, y, text[])">
+			<tagname value="Text"/>
+			<attribute name="native"/>
+			<referrer name="zcmd_OnFilterScriptInit"/>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="text">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:TextDrawFont" syntax="TextDrawFont(text, font)">
+			<attribute name="native"/>
+			<referrer name="zcmd_OnFilterScriptInit"/>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+			<param name="font">
+			</param>
+		</member>
+		<member name="M:TextDrawHideForPlayer" syntax="TextDrawHideForPlayer(playerid, text)">
+			<attribute name="native"/>
+			<referrer name="OnPlayerKeyStateChange"/>
+			<referrer name="OnPlayerDeath"/>
+			<param name="playerid">
+			</param>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+		</member>
+		<member name="M:TextDrawSetOutline" syntax="TextDrawSetOutline(text, size)">
+			<attribute name="native"/>
+			<referrer name="zcmd_OnFilterScriptInit"/>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+			<param name="size">
+			</param>
+		</member>
+		<member name="M:TextDrawSetShadow" syntax="TextDrawSetShadow(text, size)">
+			<attribute name="native"/>
+			<referrer name="zcmd_OnFilterScriptInit"/>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+			<param name="size">
+			</param>
+		</member>
+		<member name="M:TextDrawShowForPlayer" syntax="TextDrawShowForPlayer(playerid, text)">
+			<attribute name="native"/>
+			<referrer name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+		</member>
+		<member name="M:TextDrawUseBox" syntax="TextDrawUseBox(text, use)">
+			<attribute name="native"/>
+			<referrer name="zcmd_OnFilterScriptInit"/>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+			<param name="use">
+			</param>
+		</member>
+		<member name="M:cmd_airkick" syntax="cmd_airkick(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="12"/>
+			<dependency name="ApplyAnimation"/>
+			<dependency name="IsAblePedAnimation"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_animhelp" syntax="cmd_animhelp(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="cmd_animlist"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_animlist" syntax="cmd_animlist(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<referrer name="cmd_animhelp"/>
+			<dependency name="SendClientMessage"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_bar" syntax="cmd_bar(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_blob" syntax="cmd_blob(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_blowjob" syntax="cmd_blowjob(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_bodypush" syntax="cmd_bodypush(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="12"/>
+			<dependency name="ApplyAnimation"/>
+			<dependency name="IsAblePedAnimation"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_bomb" syntax="cmd_bomb(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_box" syntax="cmd_box(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_carchat" syntax="cmd_carchat(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAbleVehicleAnimation"/>
+			<dependency name="PlayAnim"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_chat" syntax="cmd_chat(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_checktime" syntax="cmd_checktime(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_cheer" syntax="cmd_cheer(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_copa" syntax="cmd_copa(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_coprun" syntax="cmd_coprun(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="12"/>
+			<dependency name="ApplyAnimation"/>
+			<dependency name="IsAblePedAnimation"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_cpr" syntax="cmd_cpr(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_crabs" syntax="cmd_crabs(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_crack" syntax="cmd_crack(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_crossarms" syntax="cmd_crossarms(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_cry" syntax="cmd_cry(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_dance" syntax="cmd_dance(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="SetPlayerSpecialAction"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_deal" syntax="cmd_deal(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_dive" syntax="cmd_dive(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_dj" syntax="cmd_dj(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_doorkick" syntax="cmd_doorkick(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="12"/>
+			<dependency name="ApplyAnimation"/>
+			<dependency name="IsAblePedAnimation"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_drinkwater" syntax="cmd_drinkwater(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_drunk" syntax="cmd_drunk(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_eat" syntax="cmd_eat(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_elbow" syntax="cmd_elbow(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="12"/>
+			<dependency name="ApplyAnimation"/>
+			<dependency name="IsAblePedAnimation"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_fallover" syntax="cmd_fallover(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_fucku" syntax="cmd_fucku(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_gesture" syntax="cmd_gesture(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_getjiggy" syntax="cmd_getjiggy(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_goggles" syntax="cmd_goggles(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_handsup" syntax="cmd_handsup(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="4"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="SetPlayerSpecialAction"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_headbutt" syntax="cmd_headbutt(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="12"/>
+			<dependency name="ApplyAnimation"/>
+			<dependency name="IsAblePedAnimation"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_hide" syntax="cmd_hide(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_holdup" syntax="cmd_holdup(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_hurt" syntax="cmd_hurt(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_idles" syntax="cmd_idles(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_intzcmdprocessor" syntax="cmd_intzcmdprocessor(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="3"/>
+			<dependency name="SendRconCommand"/>
+			<dependency name="fremove"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_jerkoff" syntax="cmd_jerkoff(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_kiss" syntax="cmd_kiss(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_laugh" syntax="cmd_laugh(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_lay" syntax="cmd_lay(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_leftslap" syntax="cmd_leftslap(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="12"/>
+			<dependency name="ApplyAnimation"/>
+			<dependency name="IsAblePedAnimation"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_lookout" syntax="cmd_lookout(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_lowbodypush" syntax="cmd_lowbodypush(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="12"/>
+			<dependency name="ApplyAnimation"/>
+			<dependency name="IsAblePedAnimation"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_lowrider" syntax="cmd_lowrider(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="GetPlayerVehicleID"/>
+			<dependency name="IsAbleVehicleAnimation"/>
+			<dependency name="IsCLowrider"/>
+			<dependency name="PlayAnim"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_misc" syntax="cmd_misc(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_ngoighe" syntax="cmd_ngoighe(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_nobreath" syntax="cmd_nobreath(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_opendoor" syntax="cmd_opendoor(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_pedmove" syntax="cmd_pedmove(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_piss" syntax="cmd_piss(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="4"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="SetPlayerSpecialAction"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_rap" syntax="cmd_rap(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_reload" syntax="cmd_reload(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_rob" syntax="cmd_rob(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_robbed" syntax="cmd_robbed(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_robman" syntax="cmd_robman(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_salute" syntax="cmd_salute(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_sexy" syntax="cmd_sexy(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_showoff" syntax="cmd_showoff(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_signal" syntax="cmd_signal(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_sit" syntax="cmd_sit(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_siteat" syntax="cmd_siteat(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_slapass" syntax="cmd_slapass(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_sleep" syntax="cmd_sleep(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_smoke" syntax="cmd_smoke(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_snatch" syntax="cmd_snatch(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_sneak" syntax="cmd_sneak(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_spank" syntax="cmd_spank(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_stop" syntax="cmd_stop(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_stripclub" syntax="cmd_stripclub(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_sunbathe" syntax="cmd_sunbathe(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_tag" syntax="cmd_tag(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_taichi" syntax="cmd_taichi(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_throw" syntax="cmd_throw(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_vomit" syntax="cmd_vomit(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_washhands" syntax="cmd_washhands(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_wave" syntax="cmd_wave(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnimEx"/>
+			<dependency name="SendClientMessage"/>
+			<dependency name="strval"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:cmd_wavedown" syntax="cmd_wavedown(playerid, params[])">
+			<attribute name="public"/>
+			<stacksize value="13"/>
+			<dependency name="IsAblePedAnimation"/>
+			<dependency name="PlayAnim"/>
+			<param name="playerid">
+			</param>
+			<param name="params">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:fclose" syntax="fclose(handle)">
+			<tagname value="bool"/>
+			<attribute name="native"/>
+			<referrer name="LoadStaticVehiclesFromFile"/>
+			<param name="handle">
+				<paraminfo>File </paraminfo>
+			</param>
+		</member>
+		<member name="M:float" syntax="float(value)">
+			<tagname value="Float"/>
+			<attribute name="native"/>
+			<referrer name="operator*(Float:,_:)"/>
+			<referrer name="operator/(Float:,_:)"/>
+			<referrer name="operator/(_:,Float:)"/>
+			<referrer name="operator+(Float:,_:)"/>
+			<referrer name="operator-(Float:,_:)"/>
+			<referrer name="operator-(_:,Float:)"/>
+			<referrer name="operator==(Float:,_:)"/>
+			<referrer name="operator!=(Float:,_:)"/>
+			<referrer name="operator&gt;(Float:,_:)"/>
+			<referrer name="operator&gt;(_:,Float:)"/>
+			<referrer name="operator&gt;=(Float:,_:)"/>
+			<referrer name="operator&gt;=(_:,Float:)"/>
+			<referrer name="operator&lt;(Float:,_:)"/>
+			<referrer name="operator&lt;(_:,Float:)"/>
+			<referrer name="operator&lt;=(Float:,_:)"/>
+			<referrer name="operator&lt;=(_:,Float:)"/>
+			<param name="value">
+			</param>
+		</member>
+		<member name="M:floatadd" syntax="floatadd(oper1, oper2)">
+			<tagname value="Float"/>
+			<attribute name="native"/>
+			<referrer name="operator+(Float:,_:)"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:floatcmp" syntax="floatcmp(oper1, oper2)">
+			<attribute name="native"/>
+			<referrer name="operator==(Float:,Float:)"/>
+			<referrer name="operator==(Float:,_:)"/>
+			<referrer name="operator!=(Float:,Float:)"/>
+			<referrer name="operator!=(Float:,_:)"/>
+			<referrer name="operator&gt;(Float:,Float:)"/>
+			<referrer name="operator&gt;(Float:,_:)"/>
+			<referrer name="operator&gt;(_:,Float:)"/>
+			<referrer name="operator&gt;=(Float:,Float:)"/>
+			<referrer name="operator&gt;=(Float:,_:)"/>
+			<referrer name="operator&gt;=(_:,Float:)"/>
+			<referrer name="operator&lt;(Float:,Float:)"/>
+			<referrer name="operator&lt;(Float:,_:)"/>
+			<referrer name="operator&lt;(_:,Float:)"/>
+			<referrer name="operator&lt;=(Float:,Float:)"/>
+			<referrer name="operator&lt;=(Float:,_:)"/>
+			<referrer name="operator&lt;=(_:,Float:)"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:floatdiv" syntax="floatdiv(dividend, divisor)">
+			<tagname value="Float"/>
+			<attribute name="native"/>
+			<referrer name="operator/(Float:,_:)"/>
+			<referrer name="operator/(_:,Float:)"/>
+			<param name="dividend">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="divisor">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:floatmul" syntax="floatmul(oper1, oper2)">
+			<tagname value="Float"/>
+			<attribute name="native"/>
+			<referrer name="operator*(Float:,_:)"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:floatstr" syntax="floatstr(string[])">
+			<tagname value="Float"/>
+			<attribute name="native"/>
+			<referrer name="LoadStaticVehiclesFromFile"/>
+			<param name="string">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:floatsub" syntax="floatsub(oper1, oper2)">
+			<tagname value="Float"/>
+			<attribute name="native"/>
+			<referrer name="operator-(Float:,_:)"/>
+			<referrer name="operator-(_:,Float:)"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:fopen" syntax="fopen(name[], mode)">
+			<tagname value="File"/>
+			<attribute name="native"/>
+			<referrer name="LoadStaticVehiclesFromFile"/>
+			<param name="name">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="mode">
+				<paraminfo>filemode </paraminfo>
+			</param>
+		</member>
+		<member name="M:format" syntax="format(output[], len, format[], ...)">
+			<attribute name="native"/>
+			<referrer name="OnPlayerCommandText"/>
+			<param name="output">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="len">
+			</param>
+			<param name="format">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="...">
+				<paraminfo> {Float,_} </paraminfo>
+			</param>
+		</member>
+		<member name="M:fread" syntax="fread(handle, string[], size, pack)">
+			<attribute name="native"/>
+			<referrer name="LoadStaticVehiclesFromFile"/>
+			<param name="handle">
+				<paraminfo>File </paraminfo>
+			</param>
+			<param name="string">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="size">
+			</param>
+			<param name="pack">
+				<paraminfo>bool </paraminfo>
+			</param>
+		</member>
+		<member name="M:fremove" syntax="fremove(name[])">
+			<tagname value="bool"/>
+			<attribute name="native"/>
+			<referrer name="cmd_intzcmdprocessor"/>
+			<param name="name">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:funcidx" syntax="funcidx(name[])">
+			<attribute name="native"/>
+			<referrer name="OnFilterScriptInit"/>
+			<param name="name">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:isNumeric" syntax="isNumeric(string[])">
+			<stacksize value="4"/>
+			<dependency name="false"/>
+			<dependency name="strlen"/>
+			<dependency name="true"/>
+			<param name="string">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:printf" syntax="printf(format[], ...)">
+			<attribute name="native"/>
+			<referrer name="LoadStaticVehiclesFromFile"/>
+			<param name="format">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="...">
+				<paraminfo> {Float,_} </paraminfo>
+			</param>
+		</member>
+		<member name="M:strlen" syntax="strlen(string[])">
+			<attribute name="native"/>
+			<referrer name="strtok"/>
+			<referrer name="strrest"/>
+			<referrer name="isNumeric"/>
+			<param name="string">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:strrest" syntax="strrest(string[], &amp;index)">
+			<stacksize value="131"/>
+			<dependency name="EOS"/>
+			<dependency name="strlen"/>
+			<dependency name="strrest"/>
+			<param name="string">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="index">
+				<paraminfo> &amp; </paraminfo>
+			</param>
+		</member>
+		<member name="M:strtok" syntax="strtok(string[], &amp;index)">
+			<stacksize value="23"/>
+			<dependency name="EOS"/>
+			<dependency name="strlen"/>
+			<dependency name="strtok"/>
+			<param name="string">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="index">
+				<paraminfo> &amp; </paraminfo>
+			</param>
+		</member>
+		<member name="M:strval" syntax="strval(string[])">
+			<attribute name="native"/>
+			<referrer name="LoadStaticVehiclesFromFile"/>
+			<referrer name="cmd_rap"/>
+			<referrer name="cmd_ngoighe"/>
+			<referrer name="cmd_chat"/>
+			<referrer name="cmd_gesture"/>
+			<referrer name="cmd_lay"/>
+			<referrer name="cmd_wave"/>
+			<referrer name="cmd_signal"/>
+			<referrer name="cmd_nobreath"/>
+			<referrer name="cmd_fallover"/>
+			<referrer name="cmd_pedmove"/>
+			<referrer name="cmd_getjiggy"/>
+			<referrer name="cmd_stripclub"/>
+			<referrer name="cmd_smoke"/>
+			<referrer name="cmd_dj"/>
+			<referrer name="cmd_reload"/>
+			<referrer name="cmd_tag"/>
+			<referrer name="cmd_deal"/>
+			<referrer name="cmd_crossarms"/>
+			<referrer name="cmd_cheer"/>
+			<referrer name="cmd_sit"/>
+			<referrer name="cmd_siteat"/>
+			<referrer name="cmd_bar"/>
+			<referrer name="cmd_dance"/>
+			<referrer name="cmd_spank"/>
+			<referrer name="cmd_sexy"/>
+			<referrer name="cmd_holdup"/>
+			<referrer name="cmd_copa"/>
+			<referrer name="cmd_misc"/>
+			<referrer name="cmd_snatch"/>
+			<referrer name="cmd_blowjob"/>
+			<referrer name="cmd_kiss"/>
+			<referrer name="cmd_idles"/>
+			<referrer name="cmd_sunbathe"/>
+			<referrer name="cmd_lowrider"/>
+			<referrer name="cmd_carchat"/>
+			<param name="string">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:token_by_delim" syntax="token_by_delim(string[], return_str[], delim, start_index)">
+			<stacksize value="2"/>
+			<referrer name="LoadStaticVehiclesFromFile"/>
+			<dependency name="EOS"/>
+			<param name="string">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="return_str">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="delim">
+			</param>
+			<param name="start_index">
+			</param>
+		</member>
+		<member name="M:tolower" syntax="tolower(c)">
+			<attribute name="native"/>
+			<referrer name="OnPlayerCommandText"/>
+			<param name="c">
+			</param>
+		</member>
+		<member name="M:zcmd_OnFilterScriptInit" syntax="zcmd_OnFilterScriptInit()">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="TextDrawAlignment"/>
+			<dependency name="TextDrawBackgroundColor"/>
+			<dependency name="TextDrawColor"/>
+			<dependency name="TextDrawCreate"/>
+			<dependency name="TextDrawFont"/>
+			<dependency name="TextDrawSetOutline"/>
+			<dependency name="TextDrawSetShadow"/>
+			<dependency name="TextDrawUseBox"/>
+			<dependency name="txtAnimHelper"/>
+		</member>
+		<member name="M:zcmd_OnPlayerCommandText" syntax="zcmd_OnPlayerCommandText(playerid, cmdtext[])">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="cmdtext">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+
+	</members>
+</doc>
